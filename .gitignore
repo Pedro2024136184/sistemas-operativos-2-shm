@@ -1,0 +1,15 @@
+# Visual Studio C++ / Windows Build Artifacts
+[Xx]64/
+[Dd]ebug/
+[Rr]elease/
+*.vcxproj.user
+*.sln.docstates
+.vs/
+*.tlog
+*.log
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.recipe

@@ -1,0 +1,29 @@
+#include <windows.h>
+#include "resource.h"
+
+IDR_MENU_PRINCIPAL MENU
+BEGIN
+    POPUP "Ficheiro"
+    BEGIN
+        MENUITEM "Configuracao...", ID_FICHEIRO_CONFIGURACAO
+        MENUITEM "Acerca",          ID_FICHEIRO_ACERCA
+        MENUITEM "Sair",            ID_FICHEIRO_SAIR
+    END
+END
+
+IDD_CONFIG_DIALOG DIALOGEX 0, 0, 250, 150
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configuracao do Monitor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Max. Alertas por Pagina:", -1, 10, 15, 80, 8
+    EDITTEXT        IDC_EDIT_MAX_ALERTAS, 100, 13, 40, 14, ES_NUMBER
+    LTEXT           "Nome da SHM:", -1, 10, 40, 80, 8
+    EDITTEXT        IDC_EDIT_SHM_NOME, 100, 38, 130, 14, ES_AUTOHSCROLL
+    LTEXT           "Nome do Evento:", -1, 10, 65, 80, 8
+    EDITTEXT        IDC_EDIT_EVENTO_NOME, 100, 63, 130, 14, ES_AUTOHSCROLL
+    LTEXT           "Nome do Mutex:", -1, 10, 90, 80, 8
+    EDITTEXT        IDC_EDIT_MUTEX_NOME, 100, 88, 130, 14, ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK", IDOK, 130, 120, 50, 14
+    PUSHBUTTON      "Cancelar", IDCANCEL, 185, 120, 50, 14
+END
