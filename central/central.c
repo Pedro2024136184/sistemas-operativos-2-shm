@@ -34,8 +34,10 @@ void AtualizarSHM() {
     WaitForSingleObject(hMutexPlacares, INFINITE);
 
     BOOL flagDesligar = pBuf->desligar;
+    DWORD novaVersao = pBuf->versao + 1;
     ZeroMemory(pBuf, sizeof(SHM_ALERTA));
     pBuf->desligar = flagDesligar;
+    pBuf->versao = novaVersao;
 
     for (int i = 0; i < MAX_PLACARES; i++) {
         if (placares[i].ativo && placares[i].id != 0) {
@@ -54,7 +56,7 @@ void AtualizarSHM() {
     ReleaseMutex(hMutexSHM);
 
     SetEvent(hEventMonitor);
-    Sleep(20);
+    Sleep(50);
     ResetEvent(hEventMonitor);
 }
 

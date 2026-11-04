@@ -1,3 +1,9 @@
+/**
+ * Protocolo de Comunicação - SO2 Placares e Memória Partilhada (Versão Melhorada)
+ * Unidade Curricular: Sistemas Operativos 2 (SO2) - Ano 2026
+ * Autor: Pedro Costa (2024136184)
+ */
+
 #ifndef PROTOCOLO_H
 #define PROTOCOLO_H
 
@@ -15,10 +21,12 @@
 #define TIPO_ENCERRAR       6
 #define TIPO_ATRIBUIR_ID    7
 
-// Nomes predefinidos para os mecanismos de partilha
-#define NOME_SHM TEXT("SO2_SHM_ALERTAS")
-#define NOME_EVENTO TEXT("SO2_EVENTO_ALERTAS")
-#define NOME_MUTEX_SHM TEXT("SO2_MUTEX_SHM")
+// Nomes predefinidos para os mecanismos de sincronização e SHM no Windows
+#define NOME_PIPE_BASE     TEXT("\\\\.\\pipe\\SO2_PIPE_PLACAR_")
+#define NOME_PIPE_CENTRAL  TEXT("\\\\.\\pipe\\SO2_PIPE_CENTRAL")
+#define NOME_SHM           TEXT("SO2_SHM_ALERTAS")
+#define NOME_EVENTO        TEXT("SO2_EVENTO_ALERTAS")
+#define NOME_MUTEX_SHM     TEXT("SO2_MUTEX_SHM")
 
 typedef struct {
     BYTE tipo;
@@ -35,8 +43,9 @@ typedef struct {
     DWORD identificador;
 } MSG_ID;
 
-// Estrutura para a MemÃ³ria Partilhada
+// Estrutura para a Memória Partilhada (Shared Memory)
 typedef struct {
+    DWORD versao; // Contador de versão incremental para deteção confiável de alterações (Zero-Polling)
     struct {
         DWORD identificador;
         DWORD duracao;
@@ -45,4 +54,4 @@ typedef struct {
     BOOL desligar;
 } SHM_ALERTA;
 
-#endif
+#endif // PROTOCOLO_H
